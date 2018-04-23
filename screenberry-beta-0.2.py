@@ -6,6 +6,7 @@ import tkFileDialog
 import os
 import subprocess
 import re
+import sys
 from ftplib import FTP , error_perm
 import time
 
@@ -24,10 +25,18 @@ class Gui:
     def __init__(self,tk):
 
         #SETTING WIN
+        global os,path,slash
+        os_get = sys.platform
+        path = os.path.abspath(os.path.dirname(sys.argv[0]))
+        if os_get == "linux2":
+            slash = "/"
+        else:
+            slash ="\\"
         self.tk = tk
         tk.title("ScreenBerry")
+        path = os.path.abspath(os.path.dirname(sys.argv[0]))
         tk.geometry("{0}x{1}+0+0".format(self.tk.winfo_screenwidth(), self.tk.winfo_screenheight()))
-        bg_image = PhotoImage(file="C:\\Users\\ALESSANDROGIBERTONI\\Desktop\\ScreenBerry\\image.gif")
+        bg_image = PhotoImage(file=path + slash +"image.gif")
         self.label = Label(tk, text="test beta 1", image=bg_image)
         #self.label.pack()
         self.tk.overrideredirect(True)
@@ -200,8 +209,8 @@ class Gui:
         elif login_var == 0:
             tkMessageBox.showinfo("error","you must login first")
     def auto_start_photo(self):
-        autorunconf = open("C:\\Users\\ALESSANDROGIBERTONI\\Desktop\\ScreenBerry\\autorun.conf", "r").read()
-        timeconf = open("C:\\Users\\ALESSANDROGIBERTONI\\Desktop\\ScreenBerry\\time.conf", "r").read().splitlines()
+        autorunconf = open(path + slash +"autorun.conf", "r").read()
+        timeconf = open(path + slash + "time.conf", "r").read().splitlines()
         if login_var == 1 and autorunconf == 1 :
             if ora_uno >= localtime <= ora_due: 
                 try:
@@ -320,7 +329,7 @@ class Gui:
         global List
 
         global b
-        List = open("C:\\Users\\ALESSANDROGIBERTONI\\Desktop\\ScreenBerry\\screenberry.conf", "r").read().splitlines()
+        List = open(path + slash + "screenberry.conf", "r").read().splitlines()
         for Line in List:
             List[i]=Line.split("|")
             i += 1
@@ -349,10 +358,10 @@ class Gui:
         if localtime >= 18 and localtime <= 20:
             print "ora di cena"""
     def ora_changer_conf():
-        with open("C:\\Users\\ALESSANDROGIBERTONI\\Desktop\\ScreenBerry\\time.conf", "r") as file:
+        with open(path + slash + "time.conf", "r") as file:
             data = file.readlines()
         data[5] = 'ciao\n'
-        with open("C:\\Users\\ALESSANDROGIBERTONI\\Desktop\\ScreenBerry\\time.conf", "w") as file:
+        with open(path + slash + "time.conf", "w") as file:
             file.writelines(data)
 
 
@@ -363,7 +372,7 @@ class Gui:
         #button
         but
     def show_file(self):
-        os.system("C:\Users\itis\Desktop\showfilerasp.py " + target_host)
+        os.system(path + slash + "showfilerasp.py " + target_host)
 
 
 
