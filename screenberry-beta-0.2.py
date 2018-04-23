@@ -107,12 +107,12 @@ class Gui:
         enterip.pack(side=RIGHT)
         enterip.focus_set()
         #ENTRY ORA
-        enterora_mattina1 = Entry(tk)
-        enterora_mattina1.pack(padx=100,pady=50)
-        enterora_mattina1.focus_set()
-        enterora_mattina2 = Entry(tk)
+        enterora_mattina1 = Text(tk, height=3, width=3)
+        enterora_mattina1.pack(padx=0.5, pady=1)
+        #enterora_mattina1.focus_set()
+        """enterora_mattina2 = Entry(tk)
         enterora_mattina2.pack(padx=90,pady=50)
-        enterora_mattina2.focus_set()
+        enterora_mattina2.focus_set()"""
 
         #RADIO VARIABLES
         global v
