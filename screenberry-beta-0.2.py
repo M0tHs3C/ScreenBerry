@@ -1,3 +1,6 @@
+#!/usr/bin/python
+#_*_ coding: utf-8 _*_
+
 #IMPORT
 #from tkinter import *
 from Tkinter import *
@@ -39,7 +42,6 @@ class Gui:
         bg_image = PhotoImage(file=path + slash +"image.gif")
         self.label = Label(tk, text="test beta 1", image=bg_image)
         #self.label.pack()
-        self.tk.overrideredirect(True)
         self.tk.bind("<Escape>", lambda e: e.widget.quit())
         self.label.image = bg_image
         self.label.place(x=0,y=0, relwidth=1, relheight=1)
@@ -65,24 +67,24 @@ class Gui:
         #SETTINGS BUTTON
         self.ciao_B = Button(tk, text="greet", command=self.ciao)
         self.ciao_B.pack()
-        self.text_get =Button(tk, text="get", width=10, command=self.userback)
-        self.text_get.pack(side=LEFT)
-        self.get_port = Button(tk, text="GET", command=self.portgetting)
-        self.get_port.pack(side=RIGHT, padx=100,pady=100)
+        self.text_get =Button(tk, text="login", width=10, command=self.userback)
+        self.text_get.place(relx=.01, rely=.15)
+        self.get_port = Button(tk, text="ADD MONITOR", command=self.portgetting)
+        self.get_port.place(relx=.1,rely=.56)
         self.but1 = Button(tk, text="try me", command=self.ciao)
         self.but2 = Button(tk, text="exit",borderwidth=1, background="red",command=tk.quit)
         self.but3 = Button(tk, text="dir", command=self.dire)
         self.but1.pack()
-        self.but2.pack(side="right",padx=10,pady=20)
+        self.but2.place(relx=0.97,rely=0.01)
         self.but3.pack()
-        self.buttonpres = Button(tk, text="start", command=self.start_file)
-        self.buttonpres.pack(side=TOP)
-        self.buttonstop = Button(tk, text="stop", command=self.stop_file)
-        self.buttonstop.pack(side=TOP)
+        self.buttonpres = Button(tk, text="start ►", command=self.start_file)
+        self.buttonpres.place(relx=.01,rely=.2)
+        self.buttonstop = Button(tk, text="stop ■", command=self.stop_file)
+        self.buttonstop.place(relx=.01,rely=.23)
         self.buttonstvideo = Button(tk, text='start video', command=self.start_video)
-        self.buttonstvideo.pack(side=TOP)
+        self.buttonstvideo.place(relx=.01,rely=.26)
         self.buttonstpvideo = Button(tk,text='stop video', command=self.stop_video)
-        self.buttonstpvideo.pack(side=TOP)
+        self.buttonstpvideo.place(relx=.01,rely=.29)
         self.buttonshowfile = Button(tk, text='Show file',command=self.show_file)
         self.buttonshowfile.pack(side=TOP)
         self.buttonora = Button(tk , text="ora",command=self.ora_set)
@@ -94,25 +96,24 @@ class Gui:
         global enter_port,entry1,epassword,enterip, enterora_mattina1
         global enterora_mattina1
         enter_port = Entry(tk)
-        enter_port.pack(side=RIGHT)
+        enter_port.place(relx=.1, rely=.53)
         enter_port.focus_set()
         entry1 = Entry(tk)
-        entry1.pack(pady=100, side=LEFT)
+        entry1.place(relx=.01, rely=.1)
         entry1.focus_set()
         epassword = Entry(tk)
         epassword.config(show="*")
-        epassword.pack(pady=100,padx=3,side=LEFT)
+        epassword.place(relx=.01, rely=.13)
         epassword.focus_set()
         enterip = Entry(tk)
-        enterip.pack(side=RIGHT)
+        enterip.place(relx=.1, rely=.5)
         enterip.focus_set()
         #ENTRY ORA
-        enterora_mattina1 = Text(tk, height=3, width=3)
-        enterora_mattina1.pack(padx=0.5, pady=1)
-        #enterora_mattina1.focus_set()
-        """enterora_mattina2 = Entry(tk)
-        enterora_mattina2.pack(padx=90,pady=50)
-        enterora_mattina2.focus_set()"""
+        enterora_mattina1 = Text(tk, height=.5, width=3)
+        enterora_mattina1.place(relx=0.9, rely=.3, anchor="e")
+        enterora_mattina2 = Text(tk, height=.5, width=3)
+        enterora_mattina2.place(relx=0.92, rely=.3, anchor="e")
+
 
         #RADIO VARIABLES
         global v
@@ -276,7 +277,7 @@ class Gui:
                 ftp = FTP(target_host)
                 ftp.login(user,passwd_user)
                 for i in range(0, len(inp)):
-                    files_path = path_dir + "\\" + inp[i]
+                    files_path = path_dir + slash + inp[i]
                     ftp.cwd(dir_path)
                     pending_files = open(files_path, "rb")
                     ftp.storbinary('STOR '+ inp[i], pending_files)
@@ -326,6 +327,7 @@ class Gui:
             tkMessageBox.showinfo('choose', List[sel])
             
         i = 0
+        f = 0.4
         global List
 
         global b
@@ -341,11 +343,12 @@ class Gui:
             global radio
             global button
             a += 1
-            radio = Radiobutton(tk, text=d, variable=v, value=a , indicatoron=0).pack(anchor=E)
+            f += .03
+            radio = Radiobutton(tk, text=d, variable=v, value=a , indicatoron=0).place(relx=.06,rely=f, anchor=E)
 
             if a == len(List):
                 global but
-                but = Button(tk , text="verify", command=self.verify).pack(anchor=E)
+                but = Button(tk , text="verify", command=self.verify).place(relx=.01, rely=0.35)
     def ora_set(self):
         a = enterora_mattina1.get()
         tkMessageBox.showinfo('ora mattina', a)
