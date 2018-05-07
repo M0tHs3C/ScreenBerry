@@ -83,6 +83,8 @@ class Gui:
         self.buttonshowfile.place(relx=0.1, rely=.4)
         self.buttonora = Button(tk , text="ora",command=self.ora_set)
         self.buttonora.place(relx=.93,rely=.29)
+        self.button_write_host = Button(tk, text="SAVE MONITOR" ,command=self.write_host)
+        self.button_write_host.place(relx=.15,rely=.56)
 
 
 
@@ -367,6 +369,12 @@ class Gui:
         but
     def show_file(self):
         os.system(path + slash + "showfilerasp.py " + target_host)
+    def write_host(self):
+        self.portgetting()
+        List = open(path + slash + "screenberry.conf", "a")
+        List.write("\n"+target_host+":"+port)
+        List.close()
+        self.exe_radio()
 
 
 
