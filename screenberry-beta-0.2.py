@@ -47,6 +47,7 @@ class Gui:
         self.label.place(x=0,y=0, relwidth=1, relheight=1)
         tk["background"] ="green"
         self.label_pass = Label(tk, text="user       password")
+        self.label_pass.config(image=bg_image)
         self.label_pass.place(relx=.01, rely=.07)
 
         #MENU
@@ -85,6 +86,9 @@ class Gui:
         self.buttonora.place(relx=.93,rely=.29)
         self.button_write_host = Button(tk, text="SAVE MONITOR" ,command=self.write_host)
         self.button_write_host.place(relx=.15,rely=.56)
+        #self.button_test_config = Button(tk, text="TEST",command=self.ciao)
+        #self.button_test_config.place(relx=.5,rely=.5)
+        #self.button_test_config.config(height=20,width=20,image=bg_image)
 
 
 
@@ -372,9 +376,15 @@ class Gui:
     def write_host(self):
         self.portgetting()
         List = open(path + slash + "screenberry.conf", "a")
-        List.write("\n"+target_host+":"+port)
-        List.close()
-        self.exe_radio()
+        host_full = target_host+":"+port
+        List_read = open(path+ slash+ "screenberry.conf", "r").read().splitlines()
+        if host_full not in List_read:
+            List.write("\n"+target_host+":"+port)
+            List.close()
+            self.exe_radio()
+        elif host_full in List_read:
+            tkMessageBox.showinfo("ERROR","MONITOR ALREADY SAVED")
+
 
 
 
@@ -383,6 +393,7 @@ class Gui:
 #EXECUTION
 
 tk = Tk()
+tk.attributes("-fullscreen", True)
 gui = Gui(tk)
 tk.mainloop()
         
