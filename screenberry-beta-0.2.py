@@ -47,7 +47,7 @@ class Gui:
         self.label.place(x=0,y=0, relwidth=1, relheight=1)
         tk["background"] ="green"
         self.label_pass = Label(tk, text="user       password")
-        self.label_pass.config(image=bg_image)
+        #self.label_pass.config(image=bg_image)
         self.label_pass.place(relx=.01, rely=.07)
 
         #MENU
