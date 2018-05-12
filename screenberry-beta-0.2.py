@@ -49,6 +49,13 @@ class Gui:
         self.label_pass = Label(tk, text="user       password")
         #self.label_pass.config(image=bg_image)
         self.label_pass.place(relx=.01, rely=.07)
+        auto_run_var = open(path + slash +"autorun.conf","r").read().splitlines()
+        auto_run_var = auto_run_var[0]
+        auto_run_var = int(auto_run_var)
+        if auto_run_var == 0:
+            text_auto = "OFF"
+        elif auto_run_var ==1:
+            text_auto = "ON"
 
         #MENU
         self.menubar = Menu(tk)
@@ -66,6 +73,7 @@ class Gui:
 
 
         #SETTINGS BUTTON
+        global button_auto_run
         self.text_get =Button(tk, text="login", width=10, command=self.userback)
         self.text_get.place(relx=.01, rely=.15)
         self.get_port = Button(tk, text="ADD MONITOR", command=self.portgetting)
@@ -86,9 +94,8 @@ class Gui:
         self.buttonora.place(relx=.93,rely=.29)
         self.button_write_host = Button(tk, text="SAVE MONITOR" ,command=self.write_host)
         self.button_write_host.place(relx=.15,rely=.56)
-        #self.button_test_config = Button(tk, text="TEST",command=self.ciao)
-        #self.button_test_config.place(relx=.5,rely=.5)
-        #self.button_test_config.config(height=20,width=20,image=bg_image)
+        self.button_auto_run = Button(tk, text=text_auto, command=self.auto_start_exec)
+        self.button_auto_run.place(relx=.1,rely=.1)
 
 
 
@@ -120,6 +127,7 @@ class Gui:
         v = IntVar(tk)
         v.set(0)
         self.exe_radio()
+        self.auto_start_photo()
 
 
 
@@ -190,8 +198,6 @@ class Gui:
         if login_var == 1:
             try:
                 import socket
-                global target_host
-                global passwd
                 from socket import error as socket_error
                 passwd = '\x80\x8f\xf6{\xb7\x82\x8bPZ\x88\xdal\x15.7\x17'
                 client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -207,19 +213,67 @@ class Gui:
         elif login_var == 0:
             tkMessageBox.showinfo("error","you must login first")
     def auto_start_photo(self):
-        autorunconf = open(path + slash +"autorun.conf", "r").read()
+        target_host = "192.168.4.40"
+        port = 136
+        autorunconf = open(path + slash +"autorun.conf", "r").read().splitlines()
+        autorunconf = autorunconf[0]
+        autorunconf = int(autorunconf)
         timeconf = open(path + slash + "time.conf", "r").read().splitlines()
-        if login_var == 1 and autorunconf == 1 :
-            if ora_uno >= localtime <= ora_due: 
+        ora_uno =     int(timeconf[0])
+        ora_due =     int(timeconf[1])
+        ora_tre =     int(timeconf[2])
+        ora_quattro = int(timeconf[3])
+        ora_cinque =  int(timeconf[4])
+        ora_sei =     int(timeconf[5])
+        ora_sette =   int(timeconf[6])
+        ora_otto =    int(timeconf[7])
+        if autorunconf == 1 :
+            if ora_uno >= localtime < ora_due:
                 try:
                     import socket
-                    global target_host
-                    global passwd
                     from socket import error as socket_error
-                    passwd ='\xd5\xbbe6N\xf1\xec\x9aC\x1ee\xe8\xe2\xc5F`'
+                    passwd ='\xd5\xbbe6N\xf1\xec\x9aC\x1ee\xe8\xe2\xc5F`'#prima presentazione
                     client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
                     client.connect((target_host,int(port)))
                     client.send(passwd)
+                except OverflowError:
+                    pass
+                except socket_error:
+                    pass
+            elif ora_tre >= localtime <= ora_quattro:
+                try:
+                    import socket
+                    from socket import error as socket_error
+                    passwd = '\xd5\xbbe6N\xf1\xec\x9aC\x1ee\xe8\xe2\xc5F`'#seconda
+                    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    client.connect((target_host, int(port)))
+                    client.send(passwd)
+                except OverflowError:
+                    pass
+                except socket_error:
+                    pass
+            elif ora_cinque >= localtime <= ora_sei:
+                try:
+                    import socket
+                    from socket import error as socket_error
+                    passwd = '\xd5\xbbe6N\xf1\xec\x9aC\x1ee\xe8\xe2\xc5F`'#terza
+                    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    client.connect((target_host, int(port)))
+                    client.send(passwd)
+                except OverflowError:
+                    pass
+                except socket_error:
+                    pass
+            elif ora_sette >= localtime <= ora_otto:
+                try:
+                    import socket
+                    from socket import error as socket_error
+                    passwd = '\xd5\xbbe6N\xf1\xec\x9aC\x1ee\xe8\xe2\xc5F`'#quarta
+                    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    client.connect((target_host, int(port)))
+                    client.send(passwd)
+                except OverflowError:
+                    pass
                 except socket_error:
                     pass
 
@@ -363,9 +417,21 @@ class Gui:
         data[5] = 'ciao\n'
         with open(path + slash + "time.conf", "w") as file:
             file.writelines(data)
-
-
-     
+    def autostartsetter(self):
+        auto_run = open(path + slash + "autorun.conf", "r").read().splitlines()
+        auto_run = int(auto_run[0])
+        if auto_run == 0:
+            with open(path + slash + "autorun.conf","r") as file:
+                data = file.readlines()
+            data[0] = '1'
+            with open(path + slash + "autorun.conf", "w") as file:
+                file.writelines(data)
+        elif auto_run == 1:
+            with open(path + slash + "autorun.conf","r") as file:
+                data = file.readlines()
+            data[0] = '0'
+            with open(path + slash + "autorun.conf","w") as file:
+                file.writelines(data)
     def exe_radio(self):
         self.radiobutton()
         radio
@@ -384,7 +450,14 @@ class Gui:
             self.exe_radio()
         elif host_full in List_read:
             tkMessageBox.showinfo("ERROR","MONITOR ALREADY SAVED")
-
+    def toggle_text(self):
+        if self.button_auto_run["text"] == "ON":
+            self.button_auto_run["text"] = "OFF"
+        else:
+            self.button_auto_run["text"] = "ON"
+    def auto_start_exec(self):
+        self.toggle_text()
+        self.autostartsetter()
 
 
 
