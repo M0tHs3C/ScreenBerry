@@ -213,7 +213,8 @@ class Gui:
         elif login_var == 0:
             tkMessageBox.showinfo("error","you must login first")
     def auto_start_photo(self):
-        target_host = "192.168.4.40"
+        #target_host = "192.168.4.40"
+        port = 136
         port = 136
         autorunconf = open(path + slash +"autorun.conf", "r").read().splitlines()
         autorunconf = autorunconf[0]
@@ -395,7 +396,7 @@ class Gui:
             global button
             a += 1
             f += .03
-            radio = Radiobutton(tk, text=d, variable=v, value=a , indicatoron=0).place(relx=.06,rely=f, anchor=E)
+            radio = Radiobutton(tk, text="MONITOR "+ str(a), variable=v, value=a , indicatoron=0).place(relx=.06,rely=f, anchor=E)
 
             if a == len(List):
                 global but
