@@ -75,7 +75,7 @@ class Gui:
         #SETTINGS BUTTON
         global button_auto_run
         self.text_get =Button(tk, text="login", width=10, command=self.userback)
-        self.text_get.place(relx=.01, rely=.15)
+        self.text_get.place(relx=.01, rely=.16)
         self.get_port = Button(tk, text="ADD MONITOR", command=self.portgetting)
         self.get_port.place(relx=.1,rely=.56)
         self.but2 = Button(tk, text="exit",borderwidth=1, background="red",command=tk.quit)
@@ -89,18 +89,18 @@ class Gui:
         self.buttonstpvideo = Button(tk,text='stop video', command=self.stop_video)
         self.buttonstpvideo.place(relx=.01,rely=.29)
         self.buttonshowfile = Button(tk, text='Show file',command=self.show_file)
-        self.buttonshowfile.place(relx=0.1, rely=.4)
-        self.buttonora = Button(tk , text="ora",command=self.ora_set)
+        self.buttonshowfile.place(relx=0.1, rely=.45)
+        self.buttonora = Button(tk , text="SET AUTOSTART",command=self.ora_set)
         self.buttonora.place(relx=.93,rely=.29)
         self.button_write_host = Button(tk, text="SAVE MONITOR" ,command=self.write_host)
-        self.button_write_host.place(relx=.15,rely=.56)
+        self.button_write_host.place(relx=.17,rely=.56)
         self.button_auto_run = Button(tk, text=text_auto, command=self.auto_start_exec)
-        self.button_auto_run.place(relx=.1,rely=.1)
+        self.button_auto_run.place(relx=.93,rely=.38)
 
 
 
         #SETTINGS ENTRY
-        global enter_port,entry1,epassword,enterip, enterora_mattina1
+        global enter_port,entry1,epassword,enterip
         global enterora_mattina1
         enter_port = Entry(tk)
         enter_port.place(relx=.1, rely=.53)
@@ -116,10 +116,22 @@ class Gui:
         enterip.place(relx=.1, rely=.5)
         enterip.focus_set()
         #ENTRY ORA
-        enterora_mattina1 = Text(tk, height=.5, width=3)
-        enterora_mattina1.place(relx=0.9, rely=.3, anchor="e")
-        enterora_mattina2 = Text(tk, height=.5, width=3)
-        enterora_mattina2.place(relx=0.92, rely=.3, anchor="e")
+        ora1 = Text(tk, height=.5, width=3)
+        ora1.place(relx=0.9, rely=.3, anchor="e")
+        ora2 = Text(tk, height=.5, width=3)
+        ora2.place(relx=0.92, rely=.3, anchor="e")
+        ora3 = Text(tk, height=.5, width=3)
+        ora3.place(relx=0.9, rely=.33, anchor="e")
+        ora4 = Text(tk, height=.5 , width=3)
+        ora4.place(relx=.92,rely=.33, anchor="e")
+        ora5 = Text(tk, height=.5, width=3)
+        ora5.place(relx=0.9, rely=.36, anchor="e")
+        ora6 = Text(tk, height=.5, width=3)
+        ora6.place(relx=.92, rely=.36, anchor="e")
+        ora7 = Text(tk, height=.5, width=3)
+        ora7.place(relx=0.9, rely=.39, anchor="e")
+        ora8 = Text(tk, height=.5, width=3)
+        ora8.place(relx=.92, rely=.39, anchor="e")
 
 
         #RADIO VARIABLES
@@ -400,18 +412,9 @@ class Gui:
 
             if a == len(List):
                 global but
-                but = Button(tk , text="verify", command=self.verify).place(relx=.01, rely=0.35)
+                but = Button(tk , text="verify", command=self.verify).place(relx=.025, rely=0.37)
     def ora_set(self):
-        a = enterora_mattina1.get()
-        tkMessageBox.showinfo('ora mattina', a)
-        """if localtime >= 6 and localtime <= 11:
-            print" mattina"
-        if localtime >= 12 and localtime <= 14:
-            print"ora di pranzo"
-        if localtime >= 14 and localtime <= 18:
-            print"pomeriggio"
-        if localtime >= 18 and localtime <= 20:
-            print "ora di cena"""
+        pass
     def ora_changer_conf():
         with open(path + slash + "time.conf", "r") as file:
             data = file.readlines()
