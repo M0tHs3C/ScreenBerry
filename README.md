@@ -3,7 +3,7 @@
 Visual geprom è un programma per la gestione multipla di postazioni video.
 Dalla finestra principale è possibile inserire i dati di accesso per l' amministrazione dei dispositivi, prima operazione necessaria
 per poter utilizzare le successive funzionalità dell' applicazione.
-Al di sotto della sezione dedicata all' accesso sono presenti dei pulsanti per il controllo delle presentazione di immagini (start e stop) e delle presentazioni di video (start video e stop video). Premendo uno di questi pulsanti viene inviato tramite una connessione udp criptata in aes un comando al server che permette di avviare la presentazione selezionata.
+Al di sotto della sezione dedicata all' accesso sono presenti dei pulsanti per il controllo delle presentazione di immagini (start e stop) e delle presentazioni di video (start video e stop video). Premendo uno di questi pulsanti viene inviato tramite una connessione tcp criptata in aes un comando al server che permette di avviare la presentazione selezionata.
 È possibile gestire una postazione video precedentemente configurata selezionandolo dalla lista presente sul lato sinistro dello
 schermo. In caso si vogla controllare una postazione nuova o non configurata è possibile inserire manualmente i dati relativi al
 dispositivo ed in caso di necessità salvarlo nella propria lista inserendo l' indirizzo ip e la porta negli appositi spazi presenti sulla destra della lista di schermi già configurati. Da qui è possibile aggiungere il dispositivo alla propria lista oppure selezionarlo senza salvarlo.
