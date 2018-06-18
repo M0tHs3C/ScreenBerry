@@ -1,0 +1,39 @@
+VISUAL GEPROM
+
+INTRODUZIONE:
+
+Visual geprom è nato per essere un software per la gestione da una posizione remota di molteplici dispositivi multimediali.
+Da un unica sorgente è possibile controllare sotto molteplici aspetti i nostri dispositivi multimediali.
+Il processo di “evoluzione” di ogni monitor è dato dalla presenza di un sistema embeddedp quale appunto una raspberry pi.
+Questa prima scelta per la realizzazione del progetto è stata ponderata su diversi aspetti, il primo di questi è il prezzo del sistema in se ( 30 euro cad.) e nonostante il suo prezzo estremamente infimo può assolvere completamente le funzioni di un pc fisso molto più grande e costoso.
+Come secondo aspetto abiamo il fattore open source, difatti il sistema embedded è quasi completamente open source, esistono diversi sitemi operativi basati su sitemi gnu/linux che ci permettono una plasmabilità del prodotto a nostro piacimento, in simbiosi con questo aspetto entra in gico la community estremamente numerosa generatasi dopo le prime versioni di questo prodotto, questa è in grado di aiutare e aiuta in modo totalmente gratuito ogni interessato per qualsivoglia di problema che il sistema possa aver subito.
+Come ultimo aspetto che ci ha definitivamente convinto a scegliere questo prodotto rispetto agli altri è la sua versatilità, essendo egli stessa dotata di un interfaccia I/O può interagire con il mondo esterno in diversi modi analogamente ad un PLC, questa interfaccia senza l’ausilio di moduli esterni sarà anche in grado di carpire e analizzare dati e non solo impulsi elettrici.
+L’unico limite in cui possiamo incappare in questo prodotto è l’assenza di immaginazione perché le possibilità sono infinite.
+
+PRINCIPI DI FUNZIONAMENTO:
+
+
+Il software comunicherà con i nostri sistemi embedded che sono a loro collegati a un monitor, collegandoci potremo decidere se avviare una presentazione di tipo fotografico rispetto a una di tipo audiovisivo o creare a sua volta un mash-up delle due tipologie.
+Il software sarà disponibile in due versioni, una universale che funzionerà su ogni dispositivo avente un browser o in una versione permanente su sistemi GNU/LINUX e Windows.
+In oltre avremo anche la possibilità di programmare l’esecuzione delle stesse, per non dover esser sempre collegati, programmeremo l’inizio di una presentazione e programmeremo l’accensione e lo spegnimento di ogni sistema, dato che ogni sistema avrà una componente di memoria variabile per immagazzinare ogni presentazione noi abbiamo garantito un accesso sicuro per la gestione dei contenuti presenti sulla stessa, da casa quindi noi potremo eliminare presentazioni troppo vecchie e se già pronte caricarle.
+
+FUNZIONAMENTO TECNICO:
+
+Scrivere e programmare il completo funzionamento del sistema, per quanto semplice possa sembrare, non è stato semplice.
+Molti sono gli aspetti affrontati assieme all’azienda per produrre infine un prodotto sicuro, efficiente, godevole e interpretabile da chiunque.
+La base del software è stata programmata utilizzando come linguaggio il python, un linguaggio semplice quanto efficace ma spesso poco considerato essendo più “giovane” rispetto a linguaggi come il C ( 1993 contro 1971) ma è anche questo il motivo che mi ha spinto a optare per questo linguaggio dimostrando che è ai livelli del C se non superiore.
+La gestione dell’automazione è stata realizzata usando come linguaggio il batch, nativo dei sistemi linux.
+La comunicazione avviende tramite una connessione Client-Server con protocollo SSL/TCP caratteerizzando un primo livello di encrypting dellle comunicazioni in seguito le comunicazioni vengono nuovamente cryptate con AES con chiavi a 256 bit mentre la comunicazione tra client server per la gestione di file avviene attraverso un protocollo SFTP con tecnica di encrypting SHA256 con chaive di dimensione analoga a quella per la comunicazione.
+Il sistema ebedded “raspberry” dispone di un uscita HDMI che sarà appunto l’uscita che useremo per garantire un output visivo a 1080p, che la scheda può appunto reggere, come frequenza d’aggiornamento disponibile la cifra si aggira attorno ai 59hz con ovviamente un monitor che possa sostenerlo.
+Il sistema inoltre presenta una capacità di memoria variabile, l’incognita dipenderà da quanto il cliente decide la memoria debba essere secondo le sue esigenze, infatti il sistema come memoria usera dei ssd (micro sd) che possono avere dimensioni variabili( si parla da un minimo di 4GB a un massimo di 128GB.
+Un quantitativo limitato di memoria, al incirca 1GB verrà dedicato al sistema operativo dei diversi monitor che per questo utilizzo è stato creato ad hoc per adempiere al meglio le funzioni di comando, il sistema si basa su GNU/LINUX ed costruito e modificato sulle basi delle distribuzioni debian.
+Il nostro sistema è dotato come ultimo aspetto di interfaccia wifi o ethernet sarà quindi a discrezione del cliente decidere come creare questa rete di dispositivi IoT.
+Passando poi al software d’esecuzione stesso,il programma base è , come ho già precedentemente spiegato, scritto in python, i software per l’esecuzione di foto e video tuttavia è stato realizzato su basi di prorgammi già esistenti, migliorando le prestazioni e creando funzioni ad hoc per questo prodotto( codec video, rendering fotografico).
+Con la sola attivazione di un opzione del router al quale sono collegate quale il port routing, potremo in seguito accedere alla nostra infrastruttura da qualsiasi parte del globo.
+
+Lo sviluppo del software è ancora in corso e sono già prorgammati diversi aspetti per aumentare la godibilità da parte del cliente:
+
+-password OTP
+-ampliamento degli orari settabili
+-modifica della gui in chiave più moderna
+-acceno probabile di face recognition e quindi di pubblicità mirata
